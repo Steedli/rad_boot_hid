@@ -1,0 +1,85 @@
+/*
+ * Copyright (c) 2025 Nordic Semiconductor ASA
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/delete-node/ &cpuapp_boot_partition;
+/delete-node/ &cpuapp_slot0_partition;
+/delete-node/ &cpurad_slot0_partition;
+/delete-node/ &cpuppr_code_partition;
+/delete-node/ &cpuflpr_code_partition;
+/delete-node/ &cpuapp_slot1_partition;
+/delete-node/ &cpurad_slot1_partition;
+/delete-node/ &storage_partition;
+/delete-node/ &periphconf_partition;
+
+&mram1x {
+	/delete-node/ partitions;
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		/* CPUAPP: 64KB only for empty_app_core (no bootloader) */
+		cpuapp_slot0_partition: partition@30000 {
+			reg = <0x30000 DT_SIZE_K(64)>;
+		};
+
+		/* CPURAD: Bootloader partition - 128KB */
+		cpurad_slot0_partition: partition@40000 {
+			reg = <0x40000 DT_SIZE_K(128)>;
+		};
+
+		/* CPURAD: Main application partition - 748KB */
+		cpurad_app_partition: partition@60000 {
+			reg = <0x60000 DT_SIZE_K(748)>;
+		};
+
+		/* CPURAD: Secondary application partition - 748KB */
+		cpurad_app2_partition: partition@11b000 {
+			reg = <0x11b000 DT_SIZE_K(748)>;
+		};
+
+		/* Storage partition - 40KB */
+		storage_partition: partition@1d0000 {
+			reg = <0x1d0000 DT_SIZE_K(40)>;
+		};
+
+		/* Peripheral configuration - 8KB */
+		periphconf_partition: partition@1da000 {
+			reg = <0x1da000 DT_SIZE_K(8)>;
+		};
+
+		/* CPUAPP: Slot1 partition (4KB for system compatibility) */
+		cpuapp_slot1_partition: partition@1dc000 {
+			reg = <0x1dc000 DT_SIZE_K(4)>;
+		};
+
+		/* Secure storage partition - 12KB (at the end) */
+		secure_storage_partition: partition@1fd000 {
+			compatible = "fixed-subpartitions";
+			reg = <0x1fd000 DT_SIZE_K(12)>;
+			ranges = <0x0 0x1fd000 0x3000>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			cpuapp_crypto_partition: partition@0 {
+				reg = <0x0 DT_SIZE_K(4)>;
+			};
+
+			cpurad_crypto_partition: partition@1000 {
+				reg = <0x1000 DT_SIZE_K(4)>;
+			};
+
+			cpuapp_its_partition: partition@2000 {
+				reg = <0x2000 DT_SIZE_K(2)>;
+			};
+
+			cpurad_its_partition: partition@2800 {
+				reg = <0x2800 DT_SIZE_K(2)>;
+			};
+		};
+	};
+};
+		

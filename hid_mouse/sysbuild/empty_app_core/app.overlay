@@ -1,0 +1,8 @@
+/*
+ * Copyright (c) 2025 Nordic Semiconductor ASA
+ * SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+ */
+
+#include "../../../dts_common/nrf54h20_cpuapp.dtsi"
+
+/* VPR nodes are already deleted in nrf54h20_cpuapp.dtsi */

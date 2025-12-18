@@ -1,0 +1,10 @@
+sample:
+  description: USB HID mouse sample
+  name: USB HID mouse sample
+tests:
+  sample.usb_hid_mouse:
+    sysbuild: true
+    integration_platforms:
+      - nrf54h20dk/nrf54h20/cpurad
+    platform_allow:
+      - nrf54h20dk/nrf54h20/cpurad
