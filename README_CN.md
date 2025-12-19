@@ -169,15 +169,15 @@ void nrf_cleanup(void)
 
 ### 先决条件
 
-- Nordic Connect SDK v3.1.0 或更高版本
+- Nordic Connect SDK v3.2.0 或更高版本
 - West 构建工具
-- ARM GCC 工具链
+- NCS toolchain v3.2.0
 
 ### 构建命令
 
 ```bash
 # 进入项目目录
-cd D:\workspace\NCS\example\v3.1.0\rad_boot_hid\hid_mouse
+cd ..\rad_boot_hid\hid_mouse
 
 # 构建所有镜像 (sysbuild 将构建所有三个镜像)
 west build -b nrf54h20dk/nrf54h20/cpurad

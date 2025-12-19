@@ -169,15 +169,15 @@ Before jumping to the application, the bootloader must clean up:
 
 ### Prerequisites
 
-- Nordic Connect SDK v3.1.0 or later
+- Nordic Connect SDK v3.2.0 or later
 - West build tool
-- ARM GCC toolchain
+- NCS toolchain v3.2.0
 
 ### Build Commands
 
 ```bash
 # Navigate to project directory
-cd D:\workspace\NCS\example\v3.1.0\rad_boot_hid\hid_mouse
+cd ..\rad_boot_hid\hid_mouse
 
 # Build all images (sysbuild will build all three images)
 west build -b nrf54h20dk/nrf54h20/cpurad
